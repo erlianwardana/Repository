@@ -7,19 +7,7 @@ from sklearn.metrics import class(fication_report,accuracy_score)
 st.set_page_config(page_title="Model Performance", page_icon="🦈")
 st.sidebar.header("Model Performance")
 
-df = pd.read_csv("dir/file.csv")
-
-@st.cache_data
-def convert_df(df):
-   return df.to_csv(index=False).encode('utf-8')
+df = pd.read_csv("model/Data_COVID19_Indonesia.csv")
+dataset = pd.read_csv("https://github.com/erlianwardana/Repository/blob/main/Data_COVID19_Indonesia.csv")
 
 
-csv = convert_df(df)
-
-st.download_button(
-   "Press to Download",
-   csv,
-   "file.csv",
-   "text/csv",
-   key='download-csv'
-)
