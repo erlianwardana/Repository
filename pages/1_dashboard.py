@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+st.title("Dataset SuperStore Sales")
+st.write("Dataset SuperStore Sales adalah dataset yang bermanfaat untuk analisis perilaku pelanggan. Dataset ini dapat digunakan untuk mempelajari produk apa yang paling laris, produk apa yang paling sering dibeli oleh pelanggan tertentu, dan segmen pelanggan mana yang paling menguntungkan.")
+
 # Baca dataset CSV
 df = pd.read_csv('SuperStore_Sales_Updated.csv')
 
