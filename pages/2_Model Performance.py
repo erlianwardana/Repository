@@ -1,4 +1,5 @@
 import pandas as pd
+import streamlit as st
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -336,6 +337,3 @@ df = df.drop("sales", axis=1)
 # Simpan dataset yang sudah dimodifikasi ke file "segmented_final3.csv"
 df.to_csv('segmented_final3.csv', index=False)
 
-# Tampilkan seluruh kolom dengan nomor urut
-for i, kolom in enumerate(df.columns, start=1):
-    print(f"{i}. {kolom}")
