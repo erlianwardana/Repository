@@ -1,6 +1,6 @@
 import pandas as pd
 import random
-import matplotlib.pylot as plt
+import matplotlib.pyplot as plt
 
 # Membaca dataset
 data = pd.read_csv('SuperStore_Sales_Updated.csv')
