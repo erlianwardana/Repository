@@ -1,31 +1,28 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
+import matpotlib.pyplot as plt 
+import seaborn as sns
 
-st.title("Dataset SuperStore Sales")
-st.write("Dataset SuperStore Sales adalah dataset yang bermanfaat untuk analisis perilaku pelanggan. Dataset ini dapat digunakan untuk mempelajari produk apa yang paling laris, produk apa yang paling sering dibeli oleh pelanggan tertentu, dan segmen pelanggan mana yang paling menguntungkan.")
+data = pd.read_csv("bread_basker.csv")
+print("DataFrame Shape :",data.shape)
+data.head()
 
-# Baca dataset CSV
-df = pd.read_csv('SuperStore_Sales_Updated.csv')
+#format data waktu
+data ['date_time'] = pd.to_datetime(data['date_time'], format ="%d-%m-%Y %H:%M")
+data ["date_time"].dtype
+data['month']= data['date_time'].dt.month
+data['day']= data['date_time'].dt.weekday
+data['hour']= data['date_time'].dt.hour
+data.head()
 
-# Konversi kolom 'Date' menjadi tipe data datetime
-df['order_date'] = pd.to_datetime(df['order_date'])
+#menampilkan 10 item paling laris
+plt.figure(figsize=(13,4))
+sns.set_palette("muted")
 
-# Temukan tanggal awal dan tanggal akhir
-tanggal_awal = df['order_date'].min()
-tanggal_akhir = df['order_date'].max()
-
-# Cetak hasilnya
-print(f"Rentang waktu data dalam dataset: dari {tanggal_awal} hingga {tanggal_akhir}")
-
-# Tampilkan seluruh kolom dengan nomor urut
-for i, kolom in enumerate(df.columns, start=1):
-    print(f"{i}. {kolom}")
-
-# Cetak jumlah nilai null
-print(df.isnull().sum())
-
-# Menampilkan jumlah data duplikat sebelum membersihkan
-jumlah_duplikat_sebelum = df.duplicated().sum()
-print(f"Jumlah data duplikat: {jumlah_duplikat_sebelum}")
-
-df
+sns.barplot(x = data["item"].value_counts()[:10].index,
+            y = data["item"].value_counts()[:10].values)
+plt.xlabel("");plt.ylabel("")
+plt.xticks(size = 13, rotation = 45)
+plt.title('10 produk yang paling laris'), size = 17)
+plt.show()
