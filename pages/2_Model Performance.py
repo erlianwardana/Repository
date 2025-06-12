@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
 # Load data
 df = pd.read_csv("SuperStore_Sales_Updated.csv")
@@ -24,12 +23,4 @@ st.metric("Total Profit", f"${total_profit:,.2f}")
 st.metric("Total Orders", total_orders)
 st.metric("Total Returns", returns_count)
 
-# Sales by Month
-sales_by_month = filtered_df.groupby("month")["sales"].sum().reset_index()
-fig = px.line(sales_by_month, x="month", y="sales", title="Penjualan per Bulan")
-st.plotly_chart(fig)
 
-# Sales by Category
-category_sales = filtered_df.groupby("category")["sales"].sum().reset_index()
-fig2 = px.bar(category_sales, x="category", y="sales", title="Penjualan per Kategori")
-st.plotly_chart(fig2)
