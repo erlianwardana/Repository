@@ -1,6 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 
 # Load data
 df = pd.read_csv("SuperStore_Sales_Updated.csv")
