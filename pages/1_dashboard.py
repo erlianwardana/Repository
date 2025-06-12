@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-data = pd.read_csv("bread_basker.csv")
+data = pd.read_csv("bread_basket.csv")
 data.head()
 
