@@ -8,15 +8,6 @@ features = ['category', 'sub_category', 'segment', 'region', 'ship_mode',
             'price', 'quantity', 'sales', 'profit', 'payment_mode']
 target = 'returns'
 
-# Encode kolom kategorikal
-df_encoded = df.copy()
-le_dict = {}  # Untuk menyimpan label encoder tiap kolom
-
-for col in features:
-    if df_encoded[col].dtype == 'object':
-        le = LabelEncoder()
-        df_encoded[col] = le.fit_transform(df_encoded[col])
-        le_dict[col] = le
 
 # Split data
 X = df_encoded[features]
