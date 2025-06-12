@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import random
-
 
 # Baca dataset CSV
 df = pd.read_csv('SuperStore_Sales_Updated.csv')
