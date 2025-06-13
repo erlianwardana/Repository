@@ -30,29 +30,3 @@ if st.checkbox("Lihat tipe data tiap kolom"):
 if st.checkbox("Lihat statistik deskriptif numerik"):
     st.write(df.describe())
 
-# Visualisasi kategori produk
-st.subheader("🛒 Penjualan per Kategori")
-category_sales = df.groupby("category")["sales"].sum().sort_values(ascending=False)
-st.bar_chart(category_sales)
-
-# Visualisasi segment pelanggan
-st.subheader("👥 Distribusi Segmen Pelanggan")
-try:
-    segment_counts = df["segment"].dropna().value_counts()
-    fig, ax = plt.subplots()
-    segment_counts.plot.pie(autopct='%1.1f%%', ax=ax, startangle=90)
-    ax.set_ylabel("")
-    ax.set_title("Distribusi Segmen Pelanggan")
-    fig.tight_layout()
-    st.pyplot(fig)
-except Exception as e:
-    st.error(f"Gagal menampilkan pie chart segmen pelanggan: {e}")
-
-# Visualisasi profit per region
-st.subheader("🌍 Profit per Region")
-region_profit = df.groupby("region")["profit"].sum()
-st.bar_chart(region_profit)
-
-# Footer
-st.markdown("---")
-st.caption("Created with ❤️ using Streamlit")
