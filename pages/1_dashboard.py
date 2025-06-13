@@ -29,3 +29,18 @@ if st.checkbox("Lihat tipe data tiap kolom"):
 # Describe numerik
 if st.checkbox("Lihat statistik deskriptif numerik"):
     st.write(df.describe())
+
+# Visualisasi kategori produk
+st.subheader("🛒 Penjualan per Kategori")
+category_sales = df.groupby("category")["sales"].sum().sort_values(ascending=False)
+st.bar_chart(category_sales)
+
+# Visualisasi profit per region
+st.subheader("🌍 Profit per Region")
+region_profit = df.groupby("region")["profit"].sum()
+st.bar_chart(region_profit)
+
+# Footer
+st.markdown("---")
+st.caption("Created with ❤️ using Streamlit")
+
