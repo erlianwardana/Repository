@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
 # Load data
 data_url = "SuperStore_Sales_Updated.csv"
 df = pd.read_csv(data_url)
