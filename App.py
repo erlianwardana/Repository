@@ -1,7 +1,8 @@
 import streamlit as st
 
-st.title("Hello, World!")
-st.write("Ini adalah aplikasi Streamlit sederhana.")
+st.title("Anggota Kelompok 9")
+st.write("Erlian Wardana Putra (2304030020)")
+st.write("Arina Nasywa Yumna (2304030022)")
+st.write("Nafisatul Widiya Sari (2304030014)")
+st.write("Nabilah Nur Fauzi (4101422080)")
 
-st.set_page_config(page_title="Hello World App", layout="centered")
-st.sidebar.header("Dashboard")
