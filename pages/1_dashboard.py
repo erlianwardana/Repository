@@ -29,4 +29,3 @@ if st.checkbox("Lihat tipe data tiap kolom"):
 # Describe numerik
 if st.checkbox("Lihat statistik deskriptif numerik"):
     st.write(df.describe())
-
