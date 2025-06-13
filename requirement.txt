@@ -1,2 +1,6 @@
 streamlit
-import sklearn
+pandas
+scikit-learn
+joblib
+seaborn
+matplotlib
