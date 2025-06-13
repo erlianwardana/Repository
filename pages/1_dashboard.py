@@ -39,8 +39,3 @@ st.bar_chart(category_sales)
 st.subheader("🌍 Profit per Region")
 region_profit = df.groupby("region")["profit"].sum()
 st.bar_chart(region_profit)
-
-# Footer
-st.markdown("---")
-st.caption("Created with ❤️ using Streamlit")
-
