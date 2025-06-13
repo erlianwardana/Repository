@@ -37,15 +37,22 @@ st.bar_chart(category_sales)
 
 # Visualisasi segment pelanggan
 st.subheader("👥 Distribusi Segmen Pelanggan")
+try:
+    segment_counts = df["segment"].dropna().value_counts()
+    fig, ax = plt.subplots()
+    segment_counts.plot.pie(autopct='%1.1f%%', ax=ax, startangle=90)
+    ax.set_ylabel("")
+    ax.set_title("Distribusi Segmen Pelanggan")
+    fig.tight_layout()
+    st.pyplot(fig)
+except Exception as e:
+    st.error(f"Gagal menampilkan pie chart segmen pelanggan: {e}")
 
-# Pastikan tidak ada nilai kosong
-segment_counts = df["segment"].dropna().value_counts()
+# Visualisasi profit per region
+st.subheader("🌍 Profit per Region")
+region_profit = df.groupby("region")["profit"].sum()
+st.bar_chart(region_profit)
 
-# Bikin plot
-fig, ax = plt.subplots()
-segment_counts.plot.pie(autopct='%1.1f%%', ax=ax, startangle=90)
-ax.set_ylabel("")
-ax.set_title("Distribusi Segmen Pelanggan")
-fig.tight_layout()
-st.pyplot(fig)
-
+# Footer
+st.markdown("---")
+st.caption("Created with ❤️ using Streamlit")
