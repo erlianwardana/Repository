@@ -1,28 +1,54 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Baca dataset CSV
-df = pd.read_csv('SuperStore_Sales_Updated.csv')
+# Load data
+data_url = "SuperStore_Sales_Updated.csv"
+df = pd.read_csv(data_url)
 
-# Konversi kolom 'Date' menjadi tipe data datetime
-df['order_date'] = pd.to_datetime(df['order_date'])
+# Title
+st.title("📊 SuperStore Sales Dashboard")
 
-# Temukan tanggal awal dan tanggal akhir
-tanggal_awal = df['order_date'].min()
-tanggal_akhir = df['order_date'].max()
+# Show data
+st.subheader("🧾 Raw Data")
+st.dataframe(df)
 
-# Cetak hasilnya
-print(f"Rentang waktu data dalam dataset: dari {tanggal_awal} hingga {tanggal_akhir}")
+# Show basic info
+st.subheader("📌 Dataset Characteristics")
+st.write("Jumlah baris:", df.shape[0])
+st.write("Jumlah kolom:", df.shape[1])
+st.write("Kolom:", list(df.columns))
 
-# Tampilkan seluruh kolom dengan nomor urut
-for i, kolom in enumerate(df.columns, start=1):
-    print(f"{i}. {kolom}")
+# Unique values summary
+if st.checkbox("Lihat jumlah nilai unik tiap kolom"):
+    st.write(df.nunique())
 
-# Cetak jumlah nilai null
-print(df.isnull().sum())
+# Data types
+if st.checkbox("Lihat tipe data tiap kolom"):
+    st.write(df.dtypes)
 
-# Menampilkan jumlah data duplikat sebelum membersihkan
-jumlah_duplikat_sebelum = df.duplicated().sum()
-print(f"Jumlah data duplikat: {jumlah_duplikat_sebelum}")
+# Describe numerik
+if st.checkbox("Lihat statistik deskriptif numerik"):
+    st.write(df.describe())
 
-df
+# Visualisasi kategori produk
+st.subheader("🛒 Penjualan per Kategori")
+category_sales = df.groupby("category")["sales"].sum().sort_values(ascending=False)
+st.bar_chart(category_sales)
+
+# Visualisasi segment pelanggan
+st.subheader("👥 Distribusi Segmen Pelanggan")
+fig, ax = plt.subplots()
+df["segment"].value_counts().plot.pie(autopct='%1.1f%%', ax=ax)
+ax.set_ylabel("")
+st.pyplot(fig)
+
+# Visualisasi profit per region
+st.subheader("🌍 Profit per Region")
+region_profit = df.groupby("region")["profit"].sum()
+st.bar_chart(region_profit)
+
+# Footer
+st.markdown("---")
+st.caption("Created with ❤️ using Streamlit")
