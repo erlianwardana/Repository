@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib
-matplotlib.use('Agg')  # Gunakan backend non-GUI
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 # Load data
 data_url = "SuperStore_Sales_Updated.csv"
